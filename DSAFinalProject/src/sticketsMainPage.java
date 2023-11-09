@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Panel;
@@ -13,6 +14,7 @@ import java.awt.Panel;
 public class sticketsMainPage {
 
 	private JFrame frame;
+	
 
 	/**
 	 * Launch the application.
@@ -35,6 +37,7 @@ public class sticketsMainPage {
 	 */
 	public sticketsMainPage() {
 		initialize();
+		 
 	}
 
 	/**
@@ -77,6 +80,7 @@ public class sticketsMainPage {
 		panel.setBounds(0, 106, 1178, 501);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+
 		
 		JLabel lblEvents = new JLabel("EVENTS");
 		lblEvents.setFont(new Font("Tahoma", Font.BOLD, 30));
