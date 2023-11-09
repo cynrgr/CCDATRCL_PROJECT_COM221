@@ -24,7 +24,7 @@ public class sticketsEnhaTiers {
 	JFrame frame;
 	private JPanel seatPanel;
 	private JButton[][] seatButtons;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,11 +52,14 @@ public class sticketsEnhaTiers {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 1192, 644);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		
 		
 		Panel panel = new Panel();
 		panel.setBackground(new Color(203, 108, 230));
@@ -106,6 +109,7 @@ public class sticketsEnhaTiers {
 		});
 		tierSelectionCbox.setBounds(615, 92, 182, 37);
 		panel.add(tierSelectionCbox);
+		
 		
 		JLabel eventSeatLbl = new JLabel("SEAT PLAN");
 		eventSeatLbl.setForeground(Color.WHITE);
@@ -433,4 +437,5 @@ public class sticketsEnhaTiers {
 
 		
 	}
+	
 }
