@@ -1,11 +1,14 @@
-package dsa;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Panel;
+import java.util.LinkedList;
+import java.util.Map;
 
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,9 +16,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class sticketsCheckoutPage {
+public class sticketsCheckoutPage extends JFrame{
 
-	private JFrame frame;
+	JFrame frame;
+	JLabel txtSec;
+	JLabel txtPrice;
+	
+	
 	
 	// Declare and initialize userinput
 	   
@@ -26,13 +33,14 @@ public class sticketsCheckoutPage {
 
 	/**
 	 * Launch the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					sticketsCheckoutPage window = new sticketsCheckoutPage();
-					window.frame.setVisible(true);
+//					sticketsCheckoutPage window = new sticketsCheckoutPage();
+//					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,15 +50,36 @@ public class sticketsCheckoutPage {
 
 	/**
 	 * Create the application.
+	 * @paramtotalPrice 
+	 * @paramavailableSeats 
+	 * @paramselectedSection 
+	 * @wbp.parser.entryPoint
 	 */
-	public sticketsCheckoutPage() {
-		initialize();
+	public sticketsCheckoutPage(String selectedSection, Map<JButton, Integer> selectedSeatsWithPrices) {
+		initialize(selectedSection, selectedSeatsWithPrices);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(String selectedSection, Map<JButton, Integer> selectedSeatsWithPrices) {
+		StringBuilder sectionBuilder = new StringBuilder();
+		StringBuilder priceBuilder = new StringBuilder();
+		
+		for (Map.Entry<JButton, Integer> entry : selectedSeatsWithPrices.entrySet()) {
+			JButton seatButton = entry.getKey();
+			int seatPrice = entry.getValue();
+			
+			sectionBuilder.append(seatButton.getText()).append(", ");
+			priceBuilder.append("P").append(seatPrice).append(", ");
+			
+			String selectedSections = sectionBuilder.toString().replaceAll(", P", "");
+			String selectedPrices = priceBuilder.toString().replaceAll(", P", "");
+			
+			String price = selectedSeatsWithPrices.getOrDefault(sectionBuilder, seatPrice).toString();
+//			txtSec.setText(selectedSection);
+//			txtPrice.setText(price);
+			
 		if (userinput.contains("GENC")) {
 	        section = "GENERIC ADMISSION";
 	        price = "₱2,500";
@@ -132,13 +161,15 @@ public class sticketsCheckoutPage {
 		txtLocation.setBounds(340, 80, 215, 30);
 		panel.add(txtLocation);
 		
-		JLabel txtSec = new JLabel(section);
+		txtSec = new JLabel();
+		txtSec.setText(selectedSection);
 		txtSec.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSec.setBackground(new Color(255, 255, 255));
 		txtSec.setBounds(595, 80, 215, 30);
 		panel.add(txtSec);
 		
-		JLabel txtPrice = new JLabel(price);
+		txtPrice = new JLabel();
+		txtPrice.setText(price);
 		txtPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtPrice.setBackground(new Color(255, 255, 255));
 		txtPrice.setBounds(850, 80, 180, 30);
@@ -168,6 +199,7 @@ public class sticketsCheckoutPage {
 		panel.add(txtEventDate);
 		
 		JLabel txtSection = new JLabel();
+		txtSection.setText(selectedSection);
 		txtSection.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSection.setBackground(new Color(255, 255, 255));
 		txtSection.setBounds(340, 240, 250, 30);
@@ -181,6 +213,7 @@ public class sticketsCheckoutPage {
 		panel.add(txtSecPrice);
 		
 		JLabel txtFinalPrice = new JLabel();
+		txtFinalPrice.setText(price);
 		txtFinalPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtFinalPrice.setBackground(new Color(255, 255, 255));
 		txtFinalPrice.setBounds(845, 240, 170, 30);
@@ -238,7 +271,7 @@ public class sticketsCheckoutPage {
 		JLabel lblGCash = new JLabel("");
 		Image img1 = new ImageIcon(this.getClass().getResource("/rsz_gcash.png")).getImage();
 		lblGCash.setIcon(new ImageIcon(img1));
-		lblGCash.setBounds(610, 410, 120, 40);
+		lblGCash.setBounds(610, 422, 120, 40);
 		panel.add(lblGCash);
 		
 		JLabel lblMaya = new JLabel("");
@@ -249,17 +282,17 @@ public class sticketsCheckoutPage {
 		
 		JRadioButton radioBtnGCash = new JRadioButton("");
 		radioBtnGCash.setBackground(new Color(203, 108, 230));
-		radioBtnGCash.setBounds(590, 420, 20, 20);
+		radioBtnGCash.setBounds(590, 432, 20, 20);
 		panel.add(radioBtnGCash);
 		
 		JRadioButton radioBtnVisa = new JRadioButton("");
 		radioBtnVisa.setBackground(new Color(203, 108, 230));
-		radioBtnVisa.setBounds(344, 420, 20, 20);
+		radioBtnVisa.setBounds(344, 432, 20, 20);
 		panel.add(radioBtnVisa);
 		
 		JRadioButton radioBtnMaya = new JRadioButton("");
 		radioBtnMaya.setBackground(new Color(203, 108, 230));
-		radioBtnMaya.setBounds(760, 420, 20, 20);
+		radioBtnMaya.setBounds(760, 432, 20, 20);
 		panel.add(radioBtnMaya);
 		
 		// TEXT AREAS
@@ -305,5 +338,6 @@ public class sticketsCheckoutPage {
 		panel.add(txtAreaUsers);
 	
 		
+		}
 	}
 }
