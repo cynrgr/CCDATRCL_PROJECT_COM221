@@ -6,14 +6,17 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Panel;
 
 public class sticketsMainPage {
 
-	private JFrame frame;
-	
+	JFrame frame;
+	private Panel panel;
 
 	/**
 	 * Launch the application.
@@ -85,19 +88,6 @@ public class sticketsMainPage {
 		lblEvents.setForeground(new Color(255, 255, 255));
 		lblEvents.setBounds(20, 10, 150, 43);
 		panel.add(lblEvents);
-		
-		JButton lblSortEvent = new JButton("<html><u>SORT EVENTS BY DATE<html><u>");
-		lblSortEvent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-   //             updateSticketsMainPage();
-            }
-        });
-		lblSortEvent.setForeground(new Color(203, 108, 230));
-		lblSortEvent.setBackground(new Color(255, 255, 255));
-		lblSortEvent.setFont(new Font("Tahoma", Font.BOLD, 10));
-        lblSortEvent.setBounds(10, 45, 153, 15);
-        panel.add(lblSortEvent);
 		
 		JLabel imgSvt = new JLabel("");
 		ImageIcon svt = new ImageIcon(this.getClass().getResource("/svt.jpg"));
