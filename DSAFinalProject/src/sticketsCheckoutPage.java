@@ -1,3 +1,4 @@
+package dsa;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,6 +16,13 @@ import javax.swing.JTextField;
 public class sticketsCheckoutPage {
 
 	private JFrame frame;
+	
+	// Declare and initialize userinput
+	   
+	String section = "";
+    String location = "";
+    String price = "";
+    String userinput = ""; // change this value as needed
 
 	/**
 	 * Launch the application.
@@ -43,6 +51,35 @@ public class sticketsCheckoutPage {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		if (userinput.contains("GENC")) {
+	        section = "GENERIC ADMISSION";
+	        price = "₱2,500";
+	    } else if (userinput.contains("GENL")) {
+	        section = "GENERAL ADMISSION";
+	        price = "₱3,500";
+	    } else if (userinput.contains("LOWER")) {
+	        section = "LOWER BOX";
+	        price = "₱11,000";
+	    } else if (userinput.contains("UPPER")) {
+	        section = "UPPER BOX";
+	        price = "₱7,500";
+	    } else if (userinput.contains("Seated")) {
+	        section = "VIP SEATED";
+	        price = "₱12,500";
+	    } else if (userinput.contains("Standing")) {
+	        section = "VIP STANDING";
+	        price = "₱10,000";
+	    } else if (userinput.contains("Royalty")) {
+	    	section = "ROYALTY STANDING";
+	    	price = "₱15,000";
+	    }
+
+	    // Remove the currency symbol and commas
+	 	String priceWithoutSymbol = price.replaceAll("[^0-9]", "");
+
+	 	// Parse the remaining string as an integer
+	 	int priceInt = Integer.parseInt(priceWithoutSymbol);
+	 	
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(255, 255, 255));
 		frame.setBounds(100, 100, 1192, 644);
@@ -62,6 +99,7 @@ public class sticketsCheckoutPage {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		// SELECTED TICKETS LABELS
 		JLabel lblSelected = new JLabel("Selected tickets");
 		lblSelected.setForeground(new Color(64, 0, 128));
 		lblSelected.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -86,30 +124,27 @@ public class sticketsCheckoutPage {
 		lblPrice.setBounds(850, 45, 70, 30);
 		panel.add(lblPrice);
 		
-		JTextField txtLocation = new JTextField();
-		txtLocation.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtLocation.setEditable(false);
+		// SELECTED TICKETS INPUT
+		JLabel txtLocation = new JLabel("Mall of Asia Arena");
+		txtLocation.setForeground(new Color(0, 0, 0));
+		txtLocation.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtLocation.setBackground(new Color(255, 255, 255));
 		txtLocation.setBounds(340, 80, 215, 30);
 		panel.add(txtLocation);
-		txtLocation.setColumns(10);
 		
-		JTextField txtSec = new JTextField();
-		txtSec.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel txtSec = new JLabel(section);
+		txtSec.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSec.setBackground(new Color(255, 255, 255));
-		txtSec.setEditable(false);
-		txtSec.setColumns(10);
 		txtSec.setBounds(595, 80, 215, 30);
 		panel.add(txtSec);
 		
-		JTextField txtPrice = new JTextField();
-		txtPrice.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel txtPrice = new JLabel(price);
+		txtPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtPrice.setBackground(new Color(255, 255, 255));
-		txtPrice.setEditable(false);
-		txtPrice.setColumns(10);
 		txtPrice.setBounds(850, 80, 180, 30);
 		panel.add(txtPrice);
 		
+		// ORDER SUMMARY LABEL
 		JLabel lblOrderSummary = new JLabel("Order Summary");
 		lblOrderSummary.setForeground(new Color(64, 0, 128));
 		lblOrderSummary.setBackground(new Color(203, 108, 230));
@@ -117,75 +152,82 @@ public class sticketsCheckoutPage {
 		lblOrderSummary.setBounds(300, 110, 250, 40);
 		panel.add(lblOrderSummary);
 		
-		JTextField txtEvent = new JTextField();
-		txtEvent.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		// ORDER SUMMARY INPUT
+		JLabel txtEvent = new JLabel();
+		txtEvent.setText("ENHYPEN: MANIFESTO");
+		txtEvent.setFont(new Font("Tahoma", Font.BOLD, 20));
 		txtEvent.setBackground(new Color(255, 255, 255));
-		txtEvent.setEditable(false);
-		txtEvent.setColumns(10);
 		txtEvent.setBounds(340, 145, 500, 35);
 		panel.add(txtEvent);
 		
-		JTextField txtEventDate = new JTextField();
-		txtEventDate.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JLabel txtEventDate = new JLabel();
+		txtEventDate.setText("February 4-5, 2023");
+		txtEventDate.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		txtEventDate.setBackground(new Color(255, 255, 255));
-		txtEventDate.setEditable(false);
-		txtEventDate.setColumns(10);
-		txtEventDate.setBounds(340, 185, 250, 35);
+		txtEventDate.setBounds(340, 170, 250, 25);
 		panel.add(txtEventDate);
 		
-		JTextField txtSection = new JTextField();
+		JLabel txtSection = new JLabel();
+		txtSection.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSection.setBackground(new Color(255, 255, 255));
-		txtSection.setEditable(false);
-		txtSection.setColumns(10);
 		txtSection.setBounds(340, 240, 250, 30);
 		panel.add(txtSection);
 		
-		JLabel lblTotalPrice = new JLabel("Total Ticket Price");
-		lblTotalPrice.setForeground(new Color(64, 0, 128));
-		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblTotalPrice.setBounds(340, 340, 180, 20);
-		panel.add(lblTotalPrice);
+		JLabel txtSecPrice = new JLabel();
+		txtSecPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtSecPrice.setBackground(new Color(255, 255, 255));
+		txtSecPrice.setText("1 x " + userinput + " " + price);
+		txtSecPrice.setBounds(630, 240, 170, 30);
+		panel.add(txtSecPrice);
 		
+		JLabel txtFinalPrice = new JLabel();
+		txtFinalPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtFinalPrice.setBackground(new Color(255, 255, 255));
+		txtFinalPrice.setBounds(845, 240, 170, 30);
+		panel.add(txtFinalPrice);
+		
+		// ONLINE FEE LABEL AND INPUT
 		JLabel lblOnlineFee = new JLabel("Online Fee");
 		lblOnlineFee.setForeground(new Color(64, 0, 128));
 		lblOnlineFee.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblOnlineFee.setBounds(340, 295, 115, 20);
 		panel.add(lblOnlineFee);
 		
-		JTextField txtSecPrice = new JTextField();
-		txtSecPrice.setBackground(new Color(255, 255, 255));
-		txtSecPrice.setEditable(false);
-		txtSecPrice.setColumns(10);
-		txtSecPrice.setBounds(630, 240, 170, 30);
-		panel.add(txtSecPrice);
-		
-		JTextField txtFinalPrice = new JTextField();
-		txtFinalPrice.setBackground(new Color(255, 255, 255));
-		txtFinalPrice.setEditable(false);
-		txtFinalPrice.setColumns(10);
-		txtFinalPrice.setBounds(845, 240, 170, 30);
-		panel.add(txtFinalPrice);
-		
-		JTextField txtOlFee = new JTextField();
+		JLabel txtOlFee = new JLabel();
+		txtOlFee.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtOlFee.setText("1 x ₱ 100.00");
 		txtOlFee.setBackground(new Color(255, 255, 255));
-		txtOlFee.setEditable(false);
-		txtOlFee.setColumns(10);
 		txtOlFee.setBounds(630, 290, 150, 30);
 		panel.add(txtOlFee);
 		
-		JTextField txtFinalOl = new JTextField();
+		JLabel txtFinalOl = new JLabel();
+		txtFinalOl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtFinalOl.setText("₱ 100.00");
 		txtFinalOl.setBackground(new Color(255, 255, 255));
-		txtFinalOl.setEditable(false);
-		txtFinalOl.setColumns(10);
 		txtFinalOl.setBounds(845, 290, 150, 30);
 		panel.add(txtFinalOl);
 		
-		JTextField txtTixPrice = new JTextField();
+		// TOTAL TICKET PRICE LABEL AND INPUT
+		JLabel lblTotalPrice = new JLabel("Total Ticket Price");
+		lblTotalPrice.setForeground(new Color(64, 0, 128));
+		lblTotalPrice.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblTotalPrice.setBounds(340, 340, 180, 20);
+		panel.add(lblTotalPrice);
+		
+		JLabel txtTixPrice = new JLabel();
+		txtTixPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtTixPrice.setText("₱" + (priceInt + 100));
 		txtTixPrice.setBackground(new Color(255, 255, 255));
-		txtTixPrice.setEditable(false);
-		txtTixPrice.setColumns(10);
 		txtTixPrice.setBounds(630, 335, 150, 29);
 		panel.add(txtTixPrice);
+		
+		
+		// PAYMENT LABEL
+		JLabel lblPayment = new JLabel("Choose Payment Method");
+		lblPayment.setForeground(new Color(64, 0, 128));
+		lblPayment.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblPayment.setBounds(300, 370, 300, 40);
+		panel.add(lblPayment);
 		
 		JLabel lblVisa = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/rsz_visa.png")).getImage();
@@ -220,12 +262,7 @@ public class sticketsCheckoutPage {
 		radioBtnMaya.setBounds(760, 420, 20, 20);
 		panel.add(radioBtnMaya);
 		
-		JLabel lblPayment = new JLabel("Choose Payment Method");
-		lblPayment.setForeground(new Color(64, 0, 128));
-		lblPayment.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblPayment.setBounds(300, 370, 300, 40);
-		panel.add(lblPayment);
-		
+		// TEXT AREAS
 		JTextArea txtAreaNotice = new JTextArea();
 		txtAreaNotice.setForeground(new Color(255, 255, 255));
 		txtAreaNotice.setWrapStyleWord(true);
