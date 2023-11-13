@@ -15,6 +15,8 @@ import javax.swing.SpinnerListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,6 +26,7 @@ public class sticketsEnhaTiers {
 	JFrame frame;
 	private JPanel seatPanel;
 	private JButton[][] seatButtons;
+	private Map<String, Integer> seatPrices;
 	
 	/**
 	 * Launch the application.
@@ -85,12 +88,19 @@ public class sticketsEnhaTiers {
 		royaltyLbl.setForeground(Color.WHITE);
 		royaltyLbl.setBounds(347, 87, 258, 38);
 		panel.add(royaltyLbl);
+		
+		initializeSeatPrices();
+		
+		JComboBox tierSelectionCbox = new JComboBox();
+
 
 		JButton selectSeatsBtn = new JButton("SELECT SEATS");
 		selectSeatsBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		selectSeatsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				String selectedSection = tierSelectionCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -98,7 +108,6 @@ public class sticketsEnhaTiers {
 		selectSeatsBtn.setBounds(968, 91, 161, 38);
 		panel.add(selectSeatsBtn);
 		
-		JComboBox tierSelectionCbox = new JComboBox();
 		tierSelectionCbox.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		tierSelectionCbox.setModel(new DefaultComboBoxModel(new String[] {"Select Section", "Royalty Standing A", "Royalty Standing B"}));
 		tierSelectionCbox.setToolTipText("");
@@ -193,7 +202,7 @@ public class sticketsEnhaTiers {
 		JButton vipStandingbtn = new JButton("SELECT SEATS");
 		vipStandingbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -218,7 +227,7 @@ public class sticketsEnhaTiers {
 		JButton vipSeatedbtn = new JButton("SELECT SEATS");
 		vipSeatedbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -245,7 +254,7 @@ public class sticketsEnhaTiers {
 		JButton lowerBoxbtn = new JButton("SELECT SEATS");
 		lowerBoxbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -270,7 +279,7 @@ public class sticketsEnhaTiers {
 		JButton upperAbtn = new JButton("SELECT SEATS");
 		upperAbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -297,7 +306,7 @@ public class sticketsEnhaTiers {
 		JButton genLbtn = new JButton("SELECT SEATS");
 		genLbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -324,7 +333,7 @@ public class sticketsEnhaTiers {
 		JButton genCbtn = new JButton("SELECT SEATS");
 		genCbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -356,7 +365,7 @@ public class sticketsEnhaTiers {
 		JButton upperBbtn = new JButton("SELECT SEATS");
 		upperBbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats();
+				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
 				window.frame.setVisible(true);
 			}
 		});
@@ -435,6 +444,16 @@ public class sticketsEnhaTiers {
 		enhaLocLbl.setBounds(522, 46, 377, 61);
 		frame.getContentPane().add(enhaLocLbl);
 
+		
+	}
+
+	private void initializeSeatPrices() {
+		seatPrices = new HashMap<>();
+		
+		seatPrices.put("Royalty Standing A", 15000);
+		seatPrices.put("Royalty Standing B", 15000);
+		seatPrices.put("VIP Standing", 10000);
+		
 		
 	}
 	
