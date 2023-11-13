@@ -20,6 +20,8 @@ import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class sticketsEnhaTiers {
 
@@ -77,6 +79,13 @@ public class sticketsEnhaTiers {
 		panel.add(enhaSeatsPoster);
 		
 		JLabel lblLogo = new JLabel("");
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sticketsMainPage window = new sticketsMainPage();
+				window.frame.setVisible(true);
+			}
+		});
 		ImageIcon logo = new ImageIcon(this.getClass().getResource("/logo.png"));
 		lblLogo.setIcon(logo);
 		lblLogo.setForeground(new Color(255, 255, 255));
@@ -199,10 +208,14 @@ public class sticketsEnhaTiers {
 		panel.add(lblGenericAdmission);
 		
 // VIP STANDING
+		JComboBox vipStandingCbox = new JComboBox();
+		
 		JButton vipStandingbtn = new JButton("SELECT SEATS");
 		vipStandingbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = vipStandingCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -211,7 +224,7 @@ public class sticketsEnhaTiers {
 		vipStandingbtn.setBounds(968, 133, 161, 38);
 		panel.add(vipStandingbtn);
 		
-		JComboBox vipStandingCbox = new JComboBox();
+		
 		vipStandingCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vipStandingbtn.setEnabled(true);
@@ -224,10 +237,14 @@ public class sticketsEnhaTiers {
 		panel.add(vipStandingCbox);
 		
 // VIP SEATED	
+		JComboBox vipSeatedCbox = new JComboBox();
+		
 		JButton vipSeatedbtn = new JButton("SELECT SEATS");
 		vipSeatedbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = vipSeatedCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -236,7 +253,7 @@ public class sticketsEnhaTiers {
 		vipSeatedbtn.setBounds(968, 175, 161, 38);
 		panel.add(vipSeatedbtn);
 		
-		JComboBox vipSeatedCbox = new JComboBox();
+		
 		vipSeatedCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				vipSeatedbtn.setEnabled(true);
@@ -251,10 +268,14 @@ public class sticketsEnhaTiers {
 		panel.add(vipSeatedCbox);
 		
 // LOWER BOX
+		JComboBox lowerCbox = new JComboBox();
+		
 		JButton lowerBoxbtn = new JButton("SELECT SEATS");
 		lowerBoxbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = lowerCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -263,7 +284,6 @@ public class sticketsEnhaTiers {
 		lowerBoxbtn.setBounds(968, 219, 161, 38);
 		panel.add(lowerBoxbtn);
 		
-		JComboBox lowerCbox = new JComboBox();
 		lowerCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lowerBoxbtn.setEnabled(true);
@@ -276,10 +296,14 @@ public class sticketsEnhaTiers {
 		panel.add(lowerCbox);
 		
 // UPPER BOX A
+		JComboBox upperACbox = new JComboBox();
+		
 		JButton upperAbtn = new JButton("SELECT SEATS");
 		upperAbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = upperACbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -288,7 +312,6 @@ public class sticketsEnhaTiers {
 		upperAbtn.setBounds(968, 263, 161, 38);
 		panel.add(upperAbtn);
 		
-		JComboBox upperACbox = new JComboBox();
 		upperACbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				upperAbtn.setEnabled(true);
@@ -303,10 +326,14 @@ public class sticketsEnhaTiers {
 		panel.add(upperACbox);
 		
 // GENERAL AD
+		JComboBox genAdCbox = new JComboBox();
+		
 		JButton genLbtn = new JButton("SELECT SEATS");
 		genLbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = genAdCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -315,7 +342,6 @@ public class sticketsEnhaTiers {
 		genLbtn.setBounds(968, 351, 161, 38);
 		panel.add(genLbtn);
 		
-		JComboBox genAdCbox = new JComboBox();
 		genAdCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				genLbtn.setEnabled(true);
@@ -330,10 +356,14 @@ public class sticketsEnhaTiers {
 		panel.add(genAdCbox);
 		
 // GENERIC AD
+		JComboBox genericAdCbox = new JComboBox();
+		
 		JButton genCbtn = new JButton("SELECT SEATS");
 		genCbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = genericAdCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -342,7 +372,6 @@ public class sticketsEnhaTiers {
 		genCbtn.setBounds(968, 397, 161, 38);
 		panel.add(genCbtn);
 		
-		JComboBox genericAdCbox = new JComboBox();
 		genericAdCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				genCbtn.setEnabled(true);
@@ -356,6 +385,8 @@ public class sticketsEnhaTiers {
 		panel.add(genericAdCbox);
 		
 // UPPER BOX B
+		JComboBox upperBCbox = new JComboBox();
+		
 		JLabel lblUpperBoxB = new JLabel("UPPER BOX B");
 		lblUpperBoxB.setForeground(Color.WHITE);
 		lblUpperBoxB.setFont(new Font("Segoe UI Black", Font.PLAIN, 20));
@@ -365,7 +396,9 @@ public class sticketsEnhaTiers {
 		JButton upperBbtn = new JButton("SELECT SEATS");
 		upperBbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sticketsEnhaSeats window = new sticketsEnhaSeats(null, 0);
+				String selectedSection = upperBCbox.getSelectedItem().toString();
+				int price = seatPrices.get(selectedSection);
+				sticketsEnhaSeats window = new sticketsEnhaSeats(selectedSection, price);
 				window.frame.setVisible(true);
 			}
 		});
@@ -374,7 +407,6 @@ public class sticketsEnhaTiers {
 		upperBbtn.setBounds(968, 307, 161, 38);
 		panel.add(upperBbtn);
 		
-		JComboBox upperBCbox = new JComboBox();
 		upperBCbox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				upperBbtn.setEnabled(true);
@@ -387,6 +419,7 @@ public class sticketsEnhaTiers {
 		upperBCbox.setBounds(615, 310, 182, 37);
 		panel.add(upperBCbox);
 		
+// TIER LABELS
 		JLabel lblVIPStanding = new JLabel("₱10,000");
 		lblVIPStanding.setForeground(Color.WHITE);
 		lblVIPStanding.setFont(new Font("Segoe UI Black", Font.PLAIN, 20));
@@ -453,6 +486,12 @@ public class sticketsEnhaTiers {
 		seatPrices.put("Royalty Standing A", 15000);
 		seatPrices.put("Royalty Standing B", 15000);
 		seatPrices.put("VIP Standing", 10000);
+		seatPrices.put("VIP Seated 201", 12500);
+		seatPrices.put("Lower Box", 11000);
+		seatPrices.put("Upper Box A", 7500);
+		seatPrices.put("Upper Box B", 6500);
+		seatPrices.put("General Admission", 3500);
+        seatPrices.put("Generic Admission", 2500);
 		
 		
 	}
