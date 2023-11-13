@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Panel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -61,7 +63,9 @@ public class sticketsCheckoutPage extends JFrame{
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @wbp.parser.entryPoint
 	 */
+	
 	private void initialize(String selectedSection, Map<JButton, Integer> selectedSeatsWithPrices) {
 		StringBuilder sectionBuilder = new StringBuilder();
 		StringBuilder priceBuilder = new StringBuilder();
@@ -77,31 +81,6 @@ public class sticketsCheckoutPage extends JFrame{
 			String selectedPrices = priceBuilder.toString().replaceAll(", P", "");
 			
 			String price = selectedSeatsWithPrices.getOrDefault(sectionBuilder, seatPrice).toString();
-//			txtSec.setText(selectedSection);
-//			txtPrice.setText(price);
-			
-		if (userinput.contains("GENC")) {
-	        section = "GENERIC ADMISSION";
-	        price = "₱2,500";
-	    } else if (userinput.contains("GENL")) {
-	        section = "GENERAL ADMISSION";
-	        price = "₱3,500";
-	    } else if (userinput.contains("LOWER")) {
-	        section = "LOWER BOX";
-	        price = "₱11,000";
-	    } else if (userinput.contains("UPPER")) {
-	        section = "UPPER BOX";
-	        price = "₱7,500";
-	    } else if (userinput.contains("Seated")) {
-	        section = "VIP SEATED";
-	        price = "₱12,500";
-	    } else if (userinput.contains("Standing")) {
-	        section = "VIP STANDING";
-	        price = "₱10,000";
-	    } else if (userinput.contains("Royalty")) {
-	    	section = "ROYALTY STANDING";
-	    	price = "₱15,000";
-	    }
 
 	    // Remove the currency symbol and commas
 	 	String priceWithoutSymbol = price.replaceAll("[^0-9]", "");
@@ -116,6 +95,13 @@ public class sticketsCheckoutPage extends JFrame{
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblLogo = new JLabel("");
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sticketsMainPage window = new sticketsMainPage();
+				window.frame.setVisible(true);
+			}
+		});
 		ImageIcon logo = new ImageIcon(this.getClass().getResource("/logo.png"));
 		lblLogo.setIcon(logo);
 		lblLogo.setForeground(new Color(255, 255, 255));
@@ -336,8 +322,17 @@ public class sticketsCheckoutPage extends JFrame{
 		txtAreaUsers.setBackground(new Color(203, 108, 230));
 		txtAreaUsers.setLineWrap(true);
 		panel.add(txtAreaUsers);
+		
+		JLabel checkout = new JLabel("CHECKOUT");
+		checkout.setBounds(445, 30, 377, 61);
+		checkout.setForeground(new Color(204, 0, 255));
+		checkout.setBackground(new Color(255, 255, 255));
+		checkout.setFont(new Font("Showcard Gothic", Font.PLAIN, 35));
+		frame.getContentPane().add(checkout);
 	
 		
 		}
 	}
+
+	
 }
