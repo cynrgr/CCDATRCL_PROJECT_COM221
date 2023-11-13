@@ -21,9 +21,20 @@ public class sticketsEnhaSeats extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
-                String selectedSection1 = "Royalty Standing A";  // Example section
-                int price = 15000;  // Example price per seat
-                new sticketsEnhaSeats(selectedSection1, price);
+//                String royalty = "Royalty Standing A";  // Example section
+//                int price = 15000;  // Example price per seat
+//                new sticketsEnhaSeats(royalty, price);
+            	Map<String, Integer> sectionPrices = new HashMap<>();
+                sectionPrices.put("Royalty Standing A", 15000);  // Example section and price
+                sectionPrices.put("Royalty Standing B", 15000);
+                sectionPrices.put("VIP Standing", 10000);
+                sectionPrices.put("VIP Seated 201", 12500);
+                sectionPrices.put("Lower Box", 11000);
+                sectionPrices.put("Upper Box A", 7500);
+                sectionPrices.put("Upper Box B", 6500);
+                sectionPrices.put("General Admission", 3500);
+                sectionPrices.put("Generic Admission", 2500);
+                new sticketsEnhaSeats(sectionPrices);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -35,9 +46,6 @@ public class sticketsEnhaSeats extends JFrame {
      */
     public sticketsEnhaSeats(String selectedSection, int price) {
         initialize();
-//    	sticketsEnhaSeats.selectedSection = selectedSection;
-//        sticketsEnhaSeats.price = price;
-//        initialize();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 400);
@@ -52,11 +60,6 @@ public class sticketsEnhaSeats extends JFrame {
         availableSeats = new LinkedList<>();
         seatPrices = new HashMap<>();
         
-        
-//        JButton checkout = new JButton("PROCEED TO CHECKOUT");
-        
-        
-
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
                 seatButton[i][j] = new JButton("Seat " + (i * 7 + j + 1));
@@ -97,7 +100,6 @@ public class sticketsEnhaSeats extends JFrame {
                 int totalPrice = price * availableSeats.size();
 
                 selectedSeatsWithPrices = new HashMap<>();
-//                selectedSeatsWithPrices.put(, totalPrice);
 
                 for (JButton seat : availableSeats) {
                     message += seat.getText() + "\n";
@@ -115,40 +117,17 @@ public class sticketsEnhaSeats extends JFrame {
 
         frame.getContentPane().add(confirmButton, BorderLayout.SOUTH);
         frame.setVisible(true);
-        
-        
-//        checkout.setVerticalAlignment(SwingConstants.BOTTOM);
-//        checkout.setEnabled(true);
-//        checkout.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-///* sticketsCheckoutPage window = new sticketsCheckoutPage(selectedSection, seatPrices);
-//			window.frame.setVisible(true); */
-//				sticketsCheckoutPage window = new sticketsCheckoutPage(selectedSection, selectedSeatsWithPrices);
-//                window.frame.setVisible(true);
-//		
-//				sticketsCheckout();
-//		
-//			}
-//		});
-//        checkout.setFont(new Font("Tahoma", Font.PLAIN, 15));
-//        //checkout.setBounds(968, 307, 161, 38);
-//		seatPanel.add(checkout);
     }
 
-    private void initialize() {
+    public sticketsEnhaSeats(Map<String, Integer> sectionPrices) {
+		// TODO Auto-generated constructor stub
+	}
+
+	private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
         
     }
-    
-//    public void sticketsCheckout() {
-//
-//    	sticketsCheckoutPage SticketsCheckoutPage = new sticketsCheckoutPage(this);
-//    	SticketsCheckoutPage.setVisible(true);
-//    	
-//    }
         
 }
