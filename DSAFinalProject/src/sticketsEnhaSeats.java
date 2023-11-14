@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class sticketsEnhaSeats extends JFrame {
     JFrame frame;
+    static int numSelected = 0;
     private JButton[][] seatButton;
     private LinkedList<JButton> availableSeats;
     private JButton confirmButton;
@@ -29,11 +30,15 @@ public class sticketsEnhaSeats extends JFrame {
                 sectionPrices.put("Royalty Standing B", 15000);
                 sectionPrices.put("VIP Standing", 10000);
                 sectionPrices.put("VIP Seated 201", 12500);
-                sectionPrices.put("Lower Box", 11000);
-                sectionPrices.put("Upper Box A", 7500);
-                sectionPrices.put("Upper Box B", 6500);
-                sectionPrices.put("General Admission", 3500);
-                sectionPrices.put("Generic Admission", 2500);
+                sectionPrices.put("VIP Seated 202", 12500);
+                sectionPrices.put("VIP Seated 203", 12500);
+                sectionPrices.put("VIP Seated 204", 12500);
+                sectionPrices.put("VIP Seated 205", 12500);
+                sectionPrices.put("VIP Seated 206", 12500);
+                sectionPrices.put("LOWER BOX 203", 11000);
+                sectionPrices.put("LOWER BOX 204", 11000);
+                sectionPrices.put("LOWER BOX 219", 11000);
+                sectionPrices.put("LOWER BOX 220", 11000);
                 new sticketsEnhaSeats(sectionPrices);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -69,12 +74,14 @@ public class sticketsEnhaSeats extends JFrame {
                         JButton button = (JButton) e.getSource();
                         if (availableSeats.contains(button)) {
                             // Seat is already booked
-                            button.setEnabled(true);
+                            button.setEnabled(false);
                             availableSeats.remove(button);
+                            numSelected--;
                         } else {
                             // Seat is available, book it
                             availableSeats.add(button);
                             button.setEnabled(false);
+                            numSelected++;
                         }
                     }
                 });
