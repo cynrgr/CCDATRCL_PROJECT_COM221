@@ -487,11 +487,17 @@ public class sticketsEnhaTiers {
 		seatPrices.put("Royalty Standing B", 15000);
 		seatPrices.put("VIP Standing", 10000);
 		seatPrices.put("VIP Seated 201", 12500);
-		seatPrices.put("Lower Box", 11000);
-		seatPrices.put("Upper Box A", 7500);
-		seatPrices.put("Upper Box B", 6500);
-		seatPrices.put("General Admission", 3500);
-        seatPrices.put("Generic Admission", 2500);
+		seatPrices.put("VIP Seated 202", 12500);
+		seatPrices.put("VIP Seated 203", 12500);
+		seatPrices.put("VIP Seated 204", 12500);
+		seatPrices.put("VIP Seated 205", 12500);
+		seatPrices.put("VIP Seated 206", 12500);
+		seatPrices.put("LOWER BOX 203", 11000);
+		seatPrices.put("LOWER BOX 204", 11000);
+		seatPrices.put("LOWER BOX 219", 11000);
+		seatPrices.put("LOWER BOX 220", 11000);
+
+
 		
 		
 	}
