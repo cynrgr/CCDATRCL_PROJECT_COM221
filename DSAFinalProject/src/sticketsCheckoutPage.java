@@ -194,7 +194,7 @@ public class sticketsCheckoutPage extends JFrame{
 		JLabel txtSecPrice = new JLabel();
 		txtSecPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSecPrice.setBackground(new Color(255, 255, 255));
-		txtSecPrice.setText("1 x " + userinput + " " + price);
+		txtSecPrice.setText(sticketsEnhaSeats.numSelected + " x " + (Integer.parseInt(price)/sticketsEnhaSeats.numSelected));
 		txtSecPrice.setBounds(630, 240, 170, 30);
 		panel.add(txtSecPrice);
 		
@@ -214,14 +214,14 @@ public class sticketsCheckoutPage extends JFrame{
 		
 		JLabel txtOlFee = new JLabel();
 		txtOlFee.setFont(new Font("Tahoma", Font.BOLD, 15));
-		txtOlFee.setText("1 x ₱ 100.00");
+		txtOlFee.setText(sticketsEnhaSeats.numSelected + " x  ₱ 100.00");
 		txtOlFee.setBackground(new Color(255, 255, 255));
 		txtOlFee.setBounds(630, 290, 150, 30);
 		panel.add(txtOlFee);
 		
 		JLabel txtFinalOl = new JLabel();
 		txtFinalOl.setFont(new Font("Tahoma", Font.BOLD, 15));
-		txtFinalOl.setText("₱ 100.00");
+		txtFinalOl.setText("₱ " + sticketsEnhaSeats.numSelected * 100);
 		txtFinalOl.setBackground(new Color(255, 255, 255));
 		txtFinalOl.setBounds(845, 290, 150, 30);
 		panel.add(txtFinalOl);
@@ -235,7 +235,7 @@ public class sticketsCheckoutPage extends JFrame{
 		
 		JLabel txtTixPrice = new JLabel();
 		txtTixPrice.setFont(new Font("Tahoma", Font.BOLD, 15));
-		txtTixPrice.setText("₱" + (priceInt + 100));
+		txtTixPrice.setText("₱" + (priceInt + (sticketsEnhaSeats.numSelected * 100)));
 		txtTixPrice.setBackground(new Color(255, 255, 255));
 		txtTixPrice.setBounds(630, 335, 150, 29);
 		panel.add(txtTixPrice);
